@@ -74,3 +74,4 @@ setup_gui()
 
 # Close the DexArm connection
 dexarm.close()
+# END OF PROGRAM
