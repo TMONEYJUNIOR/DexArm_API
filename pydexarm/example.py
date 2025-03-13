@@ -2,19 +2,19 @@ from pydexarm import Dexarm
 import time
 
 '''windows'''
-dexarm = Dexarm(port="COM67")
+dexarm = Dexarm(port="COM10")
 '''mac & linux'''
 # device = Dexarm(port="/dev/tty.usbmodem3086337A34381")
 
 dexarm.go_home()
+'''Starting position is 0,300,0'''
+'''Max range for Y is 186-413'''
+'''Max range for Z is -125 167'''
+'''Max range for X is -280 325'''
 
-dexarm.move_to(50, 300, 0)
-dexarm.move_to(50, 300, -50)
-dexarm.air_picker_pick()
-dexarm.move_to(50, 300, 0)
-dexarm.move_to(-50, 300, 0)
-dexarm.move_to(-50, 300, -50)
-dexarm.air_picker_place()
+dexarm.move_to(-250,410,0)
+dexarm.move_to(325,413,0)
+
 
 dexarm.go_home()
 
