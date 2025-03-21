@@ -6,9 +6,11 @@ import tkinter as tk
 dexarm = Dexarm(port="COM10")
 
 # Function to move the arm when the light is red
-def move_arm():
-    dexarm.move_to(10, 410, 0)  # Move arm to the specified position
+def move_arm(x,y,z):
+    dexarm.move_to(x, y, z)  # Move arm to the specified position
+    
     dexarm.go_home()  # Return the arm to home position
+
 
 # Create the traffic light cycle
 def cycle_lights(canvas, red_light, yellow_light, green_light):
@@ -28,15 +30,17 @@ def cycle_lights(canvas, red_light, yellow_light, green_light):
         if colors[current_color] == "red":
             canvas.itemconfig(red_light, fill="red")
             print("Red light: Moving arm!")
-            move_arm()  # Move the arm when red
+            move_arm(10,410,0)  # Move the arm when red
             
         elif colors[current_color] == "yellow":
             canvas.itemconfig(yellow_light, fill="yellow")
             print("Yellow light: Arm is stationary.")
+            move_arm(10,410,0)
 
         elif colors[current_color] == "green":
             canvas.itemconfig(green_light, fill="green")
             print("Green light: Arm is stationary.")
+            move_arm(10,410,0)
             
         # Update the light color every 3 seconds
         current_color = (current_color + 1) % len(colors)
@@ -73,5 +77,6 @@ def setup_gui():
 setup_gui()
 
 # Close the DexArm connection
+root.mainloop()
 dexarm.close()
 # END OF PROGRAM
