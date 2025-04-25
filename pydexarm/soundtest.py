@@ -84,4 +84,4 @@ def setup_gui():
 setup_gui()
 
 # Close the DexArm connection
-dexarm.close()
+dexarm.close() 
