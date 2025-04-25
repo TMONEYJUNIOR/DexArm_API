@@ -1,9 +1,14 @@
 from pydexarm import Dexarm
 import tkinter as tk
 import threading
+import winsound  # Add winsound module for sound effects
 
 # Initialize the Dexarm
 dexarm = Dexarm(port="COM10")
+
+# Function to play sound
+def play_sound(frequency, duration):
+    winsound.Beep(frequency, duration)
 
 # Function to move the arm when the light is green
 def move_arm(x, y, z):
@@ -39,14 +44,17 @@ def cycle_lights(canvas, red_light, yellow_light, green_light):
             canvas.itemconfig(green_light, fill="green")
             print("Green light: Moving arm to a green-specific position.")
             move_arm_async(10, 410, 0)  # Move the arm asynchronously during the green light
+            play_sound(1000, 500)  # Play a high-pitched beep for green light
             
         elif light_color == "yellow":
             canvas.itemconfig(yellow_light, fill="yellow")
             print("Yellow light: Arm is stationary.")
+            play_sound(800, 300)  # Play a medium-pitched beep for yellow light
             
         elif light_color == "red":
             canvas.itemconfig(red_light, fill="red")
             print("Red light: Moving arm to a red-specific position.")
+            play_sound(500, 1000)  # Play a low-pitched beep for red light
 
         # Move to the next light
         current_color = (current_color + 1) % len(colors)
